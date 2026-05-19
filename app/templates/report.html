@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        @page { size: A4; margin: 2.54cm; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #1f2937; line-height: 1.6; }
+        .header { text-align: center; border-bottom: 2px solid #2563eb; padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: #2563eb; margin: 0; font-size: 28px; }
+        .subtitle { color: #6b7280; font-size: 14px; margin-top: 5px; }
+        h2 { color: #1e40af; font-size: 20px; border-left: 4px solid #2563eb; padding-left: 10px; margin-top: 30px; }
+        h3 { color: #374151; font-size: 16px; margin-top: 20px; }
+        .content-box { background-color: #f3f4f6; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #d1d5db; padding: 8px; text-align: left; }
+        th { background-color: #e5e7eb; color: #374151; }
+        .footer { text-align: center; font-size: 11px; color: #9ca3af; margin-top: 50px; border-top: 1px solid #e5e7eb; padding-top: 15px; }
+        .score-box { display: inline-block; background-color: #2563eb; color: white; padding: 10px 20px; border-radius: 8px; font-size: 24px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Comprehensive Audit: {{ company_name }}</h1>
+        <div class="subtitle">Prepared exclusively for {{ prospect_name }} | {{ report_data.website }}</div>
+    </div>
+
+    <h2>Executive Summary</h2>
+    <div class="content-box">
+        <p>{{ report_data.executive_summary }}</p>
+        <p><strong>Industry:</strong> {{ report_data.industry }} | <strong>Founded:</strong> {{ report_data.founded }}</p>
+        <p><strong>Headquarters:</strong> {{ report_data.headquarters }} | <strong>Employees:</strong> {{ report_data.employee_count }}</p>
+    </div>
+
+    <h2>Audit Scorecard</h2>
+    <div style="text-align: center; margin: 20px 0;">
+        <div class="score-box">{{ report_data.audit_score.overall }}/100</div>
+    </div>
+    <table>
+        <tr>
+            <th>Digital Presence</th>
+            <th>Market Position</th>
+            <th>Growth Potential</th>
+            <th>Operational Maturity</th>
+        </tr>
+        <tr>
+            <td style="text-align: center;">{{ report_data.audit_score.digital_presence }}</td>
+            <td style="text-align: center;">{{ report_data.audit_score.market_position }}</td>
+            <td style="text-align: center;">{{ report_data.audit_score.growth_potential }}</td>
+            <td style="text-align: center;">{{ report_data.audit_score.operational_maturity }}</td>
+        </tr>
+    </table>
+
+    <h2>Financial & Market Signals</h2>
+    <ul>
+        <li><strong>Valuation:</strong> {{ report_data.valuation }}</li>
+        <li><strong>Revenue Estimate:</strong> {{ report_data.financial_signals.revenue_estimate }}</li>
+        <li><strong>Growth Trajectory:</strong> {{ report_data.financial_signals.growth_trajectory }}</li>
+        <li><strong>Funding Status:</strong> {{ report_data.financial_signals.funding_status }}</li>
+        <li><strong>Profitability:</strong> {{ report_data.financial_signals.profitability_notes }}</li>
+    </ul>
+
+    <h2>Competitive Landscape</h2>
+    <p><strong>Main Competitors:</strong> {{ report_data.competitive_landscape.main_competitors | join(', ') }}</p>
+    <p><strong>Market Position:</strong> {{ report_data.competitive_landscape.market_position }}</p>
+    <h3>Competitive Advantages:</h3>
+    <ul>
+        {% for adv in report_data.competitive_landscape.competitive_advantages %}
+            <li>{{ adv }}</li>
+        {% endfor %}
+    </ul>
+
+    <div style="page-break-before: always;"></div>
+
+    <h2>Key Insights</h2>
+    <ul>
+        {% for insight in report_data.key_insights %}
+            <li>{{ insight }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Growth Opportunities</h2>
+    {% for opp in report_data.growth_opportunities %}
+        <div class="content-box">
+            <strong>{{ opp.title }}</strong> (Priority: {{ opp.priority }})<br>
+            {{ opp.description }}
+        </div>
+    {% endfor %}
+
+    <h2>Risk Factors</h2>
+    <ul>
+        {% for risk in report_data.risk_factors %}
+            <li>{{ risk }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Strategic Recommendations</h2>
+    {% for rec in report_data.recommendations %}
+        <div class="content-box" style="border-left: 4px solid #10b981;">
+            <strong>{{ rec.title }}</strong> (Impact: {{ rec.impact }})<br>
+            {{ rec.detail }}
+        </div>
+    {% endfor %}
+    
+    <div class="footer">Generated automatically by SimplifIQ Intelligence using Gemini AI</div>
+</body>
+</html>

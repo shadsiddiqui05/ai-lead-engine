@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimplifIQ Lead Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="glass-panel">
+            <div class="header">
+                <h1>SimplifIQ Intelligence</h1>
+                <p>Enter a prospect's details to instantly generate and dispatch a personalized, AI-driven business audit.</p>
+            </div>
+
+            <form id="leadForm">
+                <div class="form-group">
+                    <label for="prospect_name">Prospect Name</label>
+                    <input type="text" id="prospect_name" class="form-control" placeholder="e.g. Jane Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Prospect Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="e.g. jane@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company_name">Company Name</label>
+                    <input type="text" id="company_name" class="form-control" placeholder="e.g. Stripe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="website">Company Website</label>
+                    <input type="text" id="website" class="form-control" placeholder="e.g. stripe.com" required>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn-submit">
+                    <span class="btn-text">Generate Audit Report</span>
+                    <div class="spinner"></div>
+                </button>
+            </form>
+
+            <div id="statusMessage" class="status-message"></div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Security & Environments (CRITICAL)
+.env
+credentials.json
+google_credentials.json
+
+# Virtual Environments
+venv/
+env/
+.venv/
+
+# Python Artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Temporary Files & Output
+*.pdf
+/tmp/
+/reports/
+
+# IDE & OS Files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
