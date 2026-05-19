@@ -41,12 +41,13 @@ Create a `.env` file in the root directory and populate it with your keys:
 ```env
 GEMINI_API_KEY=your_gemini_key
 TAVILY_API_KEY=your_tavily_key
-RESEND_API_KEY=your_resend_key
 
 # Google Workspace Integrations
 GOOGLE_SERVICE_ACCOUNT_FILE=your_service_account.json
 GOOGLE_SHEET_ID=your_sheet_id
 GOOGLE_DRIVE_FOLDER_ID=your_drive_folder_id
+SMTP_EMAIL = your_email_address
+SMTP_PASSWORD = your_16_digit_app_password
 ```
 
 ### 3. Running the Server
