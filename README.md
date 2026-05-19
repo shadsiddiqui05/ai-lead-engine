@@ -47,7 +47,7 @@ GOOGLE_SERVICE_ACCOUNT_FILE=your_service_account.json
 GOOGLE_SHEET_ID=your_sheet_id
 GOOGLE_DRIVE_FOLDER_ID=your_drive_folder_id
 SMTP_EMAIL = your_email_address
-SMTP_PASSWORD = your_16_digit_app_password
+SMTP_PASSWORD = your_16_digit_app_password (go to google security add app password 16 digit password generate)
 ```
 
 ### 3. Running the Server
