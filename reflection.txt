@@ -1,0 +1,19 @@
+SimplifIQ Assessment Reflection
+Name: Mohd. Shad
+Role: AI Software Developer Intern
+
+1. Architectural Decisions & AI Strategy
+The core challenge of this project was ensuring that the AI's output was deterministic enough to safely inject into an automated PDF compiler. To solve this, I chose Google's Gemini 2.5 Flash model and utilized its strict 'response_schema' parameter mapped to my Pydantic models. This mathematically guaranteed the LLM would output valid JSON, eliminating the risk of standard parsing errors ("Unterminated string") that often plague AI pipelines.
+
+For the backend, I chose FastAPI. Because data scraping and LLM generation are slow, I/O-bound tasks, I used FastAPI's BackgroundTasks. This allowed the API to immediately return a 202 Accepted status to the frontend, preventing the UI from freezing while the heavy processing happened asynchronously.
+
+2. Challenges Overcome
+The biggest hurdle was PDF generation via WeasyPrint, particularly handling the underlying system-level C-libraries (GTK3/Pango) required to render HTML into PDF format. I had to carefully manage these dependencies and ensure temporary files were strictly cleaned up using Python 'finally' blocks to prevent storage leaks on the server.
+
+Another challenge was handling missing data from the Tavily scraping API. I designed the AI prompt with strict guardrails: instructing the model to output "Not Publicly Disclosed" rather than hallucinating financial numbers if the scraper couldn't find them. This ensures the integrity of the B2B audit.
+
+3. Future Improvements (Production Readiness)
+If I were to take this prototype to production, I would implement three main upgrades:
+* Message Queue: Swap FastAPI BackgroundTasks for a robust queue system like Celery + Redis to handle high-volume concurrent lead processing and implement automatic retries for failed API calls.
+* Database: Replace the Google Sheets logging with a proper relational database (like PostgreSQL) to track lead status, store generated JSON, and allow users to view past audits.
+* Streaming UI: Implement Server-Sent Events (SSE) or WebSockets on the frontend so the user can see real-time status updates (e.g., "Scraping Data...", "Generating AI Audit...", "Building PDF...") instead of a static loading spinner.
