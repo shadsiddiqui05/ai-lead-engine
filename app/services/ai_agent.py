@@ -6,9 +6,9 @@ from app.models.schemas import ReportData
 # Configure Gemini
 genai.configure(api_key=settings.GEMINI_API_KEY)
 
-# Use the fast and stable Flash model
+# Use the fast and stable 1.5 Flash model
 model = genai.GenerativeModel(
-    model_name="gemini-2.5-flash",
+    model_name="gemini-2.5-flash-lite",
     generation_config={"temperature": 0.2, "response_mime_type": "application/json"},
 )
 
@@ -61,7 +61,7 @@ AUDIT_SCHEMA = """
 }
 """
 
-def generate_insights(company_name: str, context: dict) -> ReportData:
+def generate_insights(company_name: str, context: str) -> ReportData:
     """
     Feed Tavily research into Gemini -> get structured audit JSON back.
     """
@@ -72,7 +72,7 @@ def generate_insights(company_name: str, context: dict) -> ReportData:
     generate a deeply personalized, professional audit report.
 
     RESEARCH DATA:
-    {json.dumps(context, indent=2)}
+    {context}
 
     Generate the audit as valid JSON matching this schema exactly:
     {AUDIT_SCHEMA}

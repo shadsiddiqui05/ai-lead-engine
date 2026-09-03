@@ -18,7 +18,7 @@ def send_audit_email(lead: LeadSubmission, pdf_path: str):
 
     # Resend restricts free tier to verified domains or the registered email.
     # The 'from' email below usually needs to be updated to your verified domain (e.g. 'onboarding@resend.dev' or your domain).
-    from_email = "SimplifIQ Assessment <onboarding@resend.dev>"
+    from_email = "AuditPilot <onboarding@resend.dev>"
     
     params = {
         "from": from_email,
@@ -28,7 +28,7 @@ def send_audit_email(lead: LeadSubmission, pdf_path: str):
         <p>Hi {lead.prospect_name},</p>
         <p>Thank you for your interest. We've compiled an automated initial audit of <strong>{lead.company_name}</strong> based on your submission.</p>
         <p>Please find the report attached to this email.</p>
-        <p>Best,<br>The SimplifIQ Team</p>
+        <p>Best,<br>The AuditPilot Team</p>
         """,
         "attachments": [
             {

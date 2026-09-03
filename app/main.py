@@ -6,7 +6,7 @@ from app.services.orchestrator import run_automation_pipeline
 import os
 
 app = FastAPI(
-    title="SimplifIQ Lead Engine API",
+    title="AuditPilot API",
     description="Automated B2B lead enrichment, AI auditing, and PDF generation.",
     version="1.0.0"
 )

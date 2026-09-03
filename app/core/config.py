@@ -1,7 +1,7 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "SimplifIQ Lead Engine"
+    PROJECT_NAME: str = "AuditPilot"
     GEMINI_API_KEY: str
     TAVILY_API_KEY: str
     RESEND_API_KEY: str = ""
